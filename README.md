@@ -8,6 +8,15 @@ Backend:
 FrontEnd: 
 Angular 7 + sb-admin-material + @ng-bootstrap + @ngx-formly/material + PrimeNg + angular2-jsonapi
 
+Для запуска (консоль): 
+1. cd [project folder]
+2. dotnet run
+
+В БД надо установить логин для своего пользователя (например, SqLiteStudio):
+Update Persons Set UserName = '[YourDomain\YourLogin]' where UserName = 'VM-001\root'
+
+Для сборки релизной версии:
+dotnet publish -c Release
 
 Примеры страниц:
 ![Alt text](/screenshots/Screenshot_01.png?raw=true "Главная")
