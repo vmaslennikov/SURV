@@ -667,10 +667,10 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular2-jsonapi@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/angular2-jsonapi/-/angular2-jsonapi-7.0.0.tgz#2b64d848c208f51752f4497882fb492ea95669fe"
-  integrity sha512-EsDlMm6+GK8Oof7fpNpl7kq8lN83pklqpPWXtk1j6+KOAEfL4IA1gq0zM1Wx+IXN9inK7Gm1RU5jSg9eHr4OMw==
+angular2-jsonapi@7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/angular2-jsonapi/-/angular2-jsonapi-7.1.2.tgz#e87ce7225e50b4f710e72d42146c9b70b21790fd"
+  integrity sha512-Q7SaxnMrlxiB6QaSZYQ1okNW26iUY4T97A6wbNgi/uqV2V4iL6zX+6bRfkJl3Cg2U8NWSbHwB57mMwVMcnLdQw==
   dependencies:
     date-fns "^1.29.0"
     lodash-es "^4.17.11"
@@ -4306,9 +4306,9 @@ locate-path@^3.0.0:
     path-exists "^3.0.0"
 
 lodash-es@^4.17.11:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
-  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
 
 lodash.assign@^4.2.0:
   version "4.2.0"
