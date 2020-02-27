@@ -1,0 +1,44 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-tab-group #yearsTabGroup md-stretch-tabs (selectedIndexChange)="setYear($event)">
+        <mat-tab *ngFor="let tab of Years" label="{{tab.title}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #monthsTabGroup md-stretch-tabs (selectedIndexChange)="setMonth($event)">
+        <mat-tab *ngFor="let tab of Months" label="{{tab.name}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #companiesTabGroup md-stretch-tabs (selectedIndexChange)="setCompany($event)">
+        <mat-tab *ngFor="let tab of Companies" label="{{tab.Title}}">
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <br/>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div *ngIf="byClient">
+        <h5>Сводка по клиентам</h5>
+        <canvas #chart01 baseChart width="400" height="400" [colors]="colors" [data]="pieChart01Data"
+          [labels]="pieChart01Labels" [options]="pieChartOptions" chartType="pie"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="byProject">
+        <h5>Сводка по проектам</h5>
+        <canvas #chart01 baseChart width="400" height="400" [colors]="colors" [data]="pieChart02Data"
+          [labels]="pieChart02Labels" [options]="pieChartOptions" chartType="pie"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4 main-actions">
+      <h5>Доступные переходы</h5>
+      <a href="" [routerLink]="['/pages/dashboard']" class="link">Перейти к заполнению табеля</a>
+      <a href="" [routerLink]="['/pages/managment']" class="link" *ngIf="consts.IsAdmin || consts.IsBoss || consts.IsManager">Табели подчиненных сотрудников</a>
+      <a href="" [routerLink]="['/pages/usercalendars']" class="link" *ngIf="consts.IsAdmin || consts.IsHr">Список индивидуальных календарей сотрудников</a>
+      <a href="" [routerLink]="['/pages/workdayscalendar']" class="link" *ngIf="consts.IsAdmin || consts.IsHr">Список нерабочих дней года</a>
+      <a href="" [routerLink]="['/pages/reports']" class="link" *ngIf="consts.IsAdmin || consts.IsCoordinator">Список доступных отчетов</a>
+      <a href="" [routerLink]="['/pages/managment']" class="link" *ngIf="consts.IsAdmin">Список табелей всех сотрудников</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-tab-group #yearsTabGroup md-stretch-tabs (selectedIndexChange)="setYear($event)">
+        <mat-tab *ngFor="let tab of Years" label="{{tab.title}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #quartalsTabGroup md-stretch-tabs (selectedIndexChange)="setQuartal($event)">
+        <mat-tab *ngFor="let tab of Quartals" label="{{tab.title}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #companiesTabGroup md-stretch-tabs (selectedIndexChange)="setCompany($event)">
+        <mat-tab *ngFor="let tab of Companies" label="{{tab.Title}}">
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="col-md-6">
+      <p>Табели созданы: {{tabels.length > 0 && tCreatedErrorsAll.length === 0 ? 'Да':'Нет'}}
+        <a (click)="openDialogWithTemplateRef(myDialog01)" *ngIf="tCreatedErrorsAll.length>0">?</a>
+      </p>
+      <div [hidden] class="hidden">
+        <ng-template #myDialog01>
+          <h5>Список несозданных табелей</h5>
+          <div>
+            <table class="table">
+              <tr>
+                <th>Сотрудник</th>
+                <th>Месяц</th>
+              </tr>
+              <tr *ngFor="let item of tCreatedErrorsAll">
+                <td>{{item.Person}}</td>
+                <td>{{item.Month}}</td>
+              </tr>
+            </table>
+          </div>
+        </ng-template>
+      </div>
+      <p>Табели подтверждены:
+        {{tabels.length > 0 && tCreatedErrorsAll.length === 0 && tFilledErrorsAll.length === 0 ? 'Да':'Нет'}}
+        <a (click)="openDialogWithTemplateRef(myDialog02)" *ngIf="tFilledErrorsAll.length>0">?</a>
+      </p>
+      <div [hidden] class="hidden">
+        <ng-template #myDialog02>
+          <h5>Список неподтвержденных табелей</h5>
+          <div>
+              <table class="table">
+                <tr>
+                  <th>Сотрудник</th>
+                  <th>Месяц</th>
+                </tr>
+                <tr *ngFor="let item of tFilledErrorsAll">
+                  <td>{{item.Person}}</td>
+                  <td>{{item.Month}}</td>
+                </tr>
+              </table>
+            </div>
+        </ng-template>
+      </div>
+      <p>Табели согласованы:
+        {{tabels.length > 0 && tCreatedErrorsAll.length === 0 && tApprovedErrorsAll.length === 0 ? 'Да':'Нет'}}
+        <a (click)="openDialogWithTemplateRef(myDialog03)" *ngIf="tApprovedErrorsAll.length>0">?</a>
+      </p>
+      <div [hidden] class="hidden">
+        <ng-template #myDialog03>
+          <h5>Список несогласованных табелей</h5>
+          <div>
+              <table class="table">
+                <tr>
+                  <th>Сотрудник</th>
+                  <th>Месяц</th>
+                </tr>
+                <tr *ngFor="let item of tApprovedErrorsAll">
+                  <td>{{item.Person}}</td>
+                  <td>{{item.Month}}</td>
+                </tr>
+              </table>
+            </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <mat-toolbar color="">
+      <mat-toolbar-row>Сводная таблица</mat-toolbar-row>
+    </mat-toolbar>
+    <div class="row">
+      <div class="col-md-12"><a href='/api/Reports/Pivot?year={{year}}&quartal={{quartal}}&companyid={{company}}'>Отчет:
+          Сводная таблица</a></div>
+    </div>
+    <mat-toolbar color="">
+      <mat-toolbar-row>Квартальные отчеты по клиенту</mat-toolbar-row>
+    </mat-toolbar>
+    <div class="row">
+      <ng-template ngFor let-item [ngForOf]="items">
+        <div class="col-md-4"><a
+            href='/api/Reports/ByClient?year={{year}}&quartal={{quartal}}&clientid={{item.id}}'>{{item.title}}</a></div>
+      </ng-template>
+    </div>
+  </div>
+  <br />
+
+</div>

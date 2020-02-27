@@ -1,0 +1,14 @@
+<!-- <app-nav></app-nav> -->
+<ngx-topnav></ngx-topnav>
+<!-- <ngx-sidebar></ngx-sidebar> -->
+<!-- <ngx-menu-list-item *ngFor="let item of navItems" [item]="item"></ngx-menu-list-item> -->
+<div id="sidebar">
+  <ng-material-multilevel-menu
+    [configuration]='config'
+    [items]='navItems'
+    >
+  </ng-material-multilevel-menu>
+</div>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

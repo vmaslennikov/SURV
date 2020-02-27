@@ -1,0 +1,53 @@
+<div>
+  <div class="row">
+    <div class="col-md-10">
+      <mat-tab-group #yearsTabGroup md-stretch-tabs (selectedIndexChange)="setYear($event)">
+        <mat-tab *ngFor="let tab of Years" label="{{tab.title}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #monthsTabGroup md-stretch-tabs (selectedIndexChange)="setMonth($event)">
+        <mat-tab *ngFor="let tab of Months" label="{{tab.name}}">
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="alert alert-info" *ngIf="(ProjectsData||[]).length === 0">
+    <div class="cold-md-12">Нет информации по проектам в выбранном периоде</div>
+  </div>
+  <div class="row" >
+    <mat-card class="col-md-3 projectData" *ngFor="let p of ProjectsData">
+      <mat-card-header>
+        <mat-card-title (click)="showByService(p)">
+          <a >{{p.projectTitle}}</a>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- <table mat-table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Сотрудник</th>
+              <th>Сумма</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let item of p.Items">
+            <td>{{item.PersonName}}</td>
+            <td>{{item.Sum}}</td>
+          </tr>
+        </table> -->
+        <table mat-table [dataSource]="p.Items" class="table table-striped">
+          <ng-container matColumnDef="PersonName">
+            <th mat-header-cell *matHeaderCellDef> Сотрудник </th>
+            <td mat-cell *matCellDef="let o"> {{o.PersonName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Sum">
+            <th mat-header-cell *matHeaderCellDef> Часы </th>
+            <td mat-cell *matCellDef="let o"> {{o.Sum}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

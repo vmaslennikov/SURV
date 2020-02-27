@@ -1,0 +1,176 @@
+@import 'material';
+@import 'main';
+@import 'utils';
+@import 'responsive';
+
+
+@import 'variables';
+// Imports functions, variables, and mixins that are needed by other Bootstrap files
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+// Import Reboot
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/grid'; // add the grid
+@import '~bootstrap/scss/utilities'; // add css utilities
+
+@import 'reset';
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// @import '~@swimlane/ngx-datatable/release/index.css';
+// @import '~@swimlane/ngx-datatable/release/themes/material.css';
+// @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@import '~primeng/resources/themes/nova-light/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeicons/primeicons.css';
+
+// @import "~ag-grid-community/dist/styles/ag-grid.css";
+// @import "~ag-grid-community/dist/styles/ag-theme-material.css";
+
+// regular style toast
+@import '~ngx-toastr/toastr.css';
+
+.datatable-row-odd {  background-color: #F5F5F5;}
+
+.datatable-row-even {  background-color: #fff;}
+
+.control-icon{  color:#a2a2a2}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell.cellShort,
+.ngx-datatable.material .datatable-header .datatable-header-cell.cellShort{
+  border-left: 1px solid #a2a2a2;
+}
+.ngx-datatable.material .datatable-header .datatable-header-cell.cellShort,
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell.cellShort {
+  padding: .9rem .2rem;
+  text-align: center;
+}
+
+/deep/.mat-tab-label, /deep/.mat-tab-label-active{
+  min-width: auto !important;
+  //padding: 8px !important;
+  //margin: 8px !important;
+ }
+
+ .mat-tab-label {
+  min-width: 42px;
+  padding: 0 12px;
+}
+
+.mat-tab-group > .mat-tab-header > .mat-tab-label-container > .mat-tab-list > .mat-tab-labels {
+  .mat-tab-label {
+    min-width: 42px;
+    padding: 0 12px;
+  }
+}
+#tblmonths.mat-tab-group > .mat-tab-header > .mat-tab-label-container > .mat-tab-list > .mat-tab-labels{
+  .mat-tab-label {
+    padding:0 !important;
+  }
+}
+.anml-data{
+  text-transform: none !important;
+}
+
+.day-nowork{ background-color: #ebebeb !important;}
+.day-short{ background-color: #fcf3ca !important;}
+.day-holiday{ background-color: #d8ffcc !important;}
+.day-ill{ background-color: #e8c0c0 !important;}
+.day-businesstrip{ background-color: #caecfc !important;}
+.day-timefill{ background-color: #D5FBD7 !important;}
+
+body .ui-table {
+  font-size: 12px;
+}
+body .ui-table .ui-table-thead > tr > th,
+body .ui-table .ui-table-tbody > tr > td{
+  padding: 12px 2px ;
+  word-break: break-word;
+}
+body .ui-table tr > th.cellShort,body .ui-table tr > td.cellShort{
+  padding: 12px 2px ;
+  text-align: center;
+}
+
+app-root{
+  margin-bottom: 10px;
+}
+
+.va-top{
+  vertical-align: top;
+}
+
+.mat-toolbar-multiple-rows{
+  min-height: 40px;
+}
+.mat-list-base .mat-list-item {
+  font-size: 14px;
+}
+.mat-select-panel{
+  max-width: auto !important;
+}
+
+[hidden],.hidden { display: none !important;}
+
+mat-form-field {
+  width: 100%;
+}
+
+body .ui-table .ui-table-tbody>tr.ui-state-highlight ,
+body .ui-table .ui-table-tbody>tr:nth-child(even).ui-state-highlight {
+background-color: #9FA8DA;
+color: #000;
+}
+
+body .ui-table .ui-table-thead > tr.table-filters > th{
+  padding: 0;
+}
+body .ui-table .ui-table-thead > tr.table-filters > th input {
+  width: 100%;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+  .mat-select-panel{
+    min-width: 830px !important;
+  }
+}
+.dsTree-TabelInfo span.material-icons{
+  font-size: 16px !important;
+}
+.sTable .table{
+  width: 100%;
+}
+.sTable .table td, .sTable .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.hide {
+  display: none;
+}
+
+.monthcontainer{
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+.tr-small td{
+  padding: 2px !important;
+}
+
+body .treetable .ui-treetable .ui-treetable-tbody > tr > td {
+  padding: 0 0.857em !important;
+}
+
+ngx-filetree .ui-tree{
+  width: 100%;
+}
+
+.material-icons {
+  /* Support for IE */
+  font-feature-settings: 'liga';
+}

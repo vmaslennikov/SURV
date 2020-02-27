@@ -1,0 +1,16 @@
+.projectData table{
+  width: 100%;
+}
+.projectData .mat-card-title{
+  cursor: pointer;
+}
+.mat-card {
+  // transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 0;
+}
+tr.mat-footer-row, tr.mat-row{
+  height: 24px;
+}

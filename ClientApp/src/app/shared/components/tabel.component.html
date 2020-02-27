@@ -1,0 +1,208 @@
+<div>
+  <div class="row" *ngIf="fullname">
+    <div class="col-md-12 tex-underline">
+      Табель сотрудника: <span class="b">{{fullname}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <mat-tab-group #yearsTabGroup md-stretch-tabs (selectedIndexChange)="setYear($event)" id="tblyears">
+        <mat-tab *ngFor="let tab of Years" label="{{tab.title}}">
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #monthsTabGroup md-stretch-tabs (selectedIndexChange)="setMonth($event)" id="tblmonths">
+        <mat-tab *ngFor="let tab of Months" >
+            <ng-template mat-tab-label>
+                <div [ngClass]="tab.class">
+                    {{tab.name}}
+                </div>
+            </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group #companiesTabGroup md-stretch-tabs (selectedIndexChange)="setCompany($event)">
+        <mat-tab *ngFor="let tab of Companies" label="{{tab.Title}}">
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div class="col-md-2">
+      <div class="">
+        <div style="display:inline-block;WIDTH: 20px; BACKGROUND: #ebebeb; HEIGHT: 20px">&nbsp;</div>
+        <span style="TEXT-ALIGN: left">- Нерабочий день</span>
+      </div>
+      <div class="">
+        <div style="display:inline-block;WIDTH: 20px; BACKGROUND: #fcf3ca; HEIGHT: 20px">&nbsp;</div>
+        <span style="TEXT-ALIGN: left">- Короткий день</span>
+      </div>
+      <div class="">
+        <div style="display:inline-block;WIDTH: 20px; BACKGROUND: #d8ffcc; HEIGHT: 20px">&nbsp;</div>
+        <span style="TEXT-ALIGN: left">- Отпуск</span>
+      </div>
+      <div class="">
+        <div style="display:inline-block;WIDTH: 20px; BACKGROUND: #e8c0c0; HEIGHT: 20px">&nbsp;</div>
+        <span style="TEXT-ALIGN: left">- Больничный</span>
+      </div>
+      <div class="">
+        <div style="display:inline-block;WIDTH: 20px; BACKGROUND: #caecfc; HEIGHT: 20px">&nbsp;</div>
+        <span style="TEXT-ALIGN: left">- Командировка</span>
+      </div>
+    </div>
+  </div>
+  <mat-toolbar color="primary">
+    <!--
+    <mat-toolbar-row>
+      <code>Табель за {{consts.Month}}.{{consts.Year}}</code>
+    </mat-toolbar-row>
+    -->
+    <button mat-button (click)="add()" *ngIf="allowNew">
+      <mat-icon>add_circle</mat-icon>
+      Создать
+    </button>
+    <button mat-button (click)="update()" *ngIf="allowEdit && false">
+      <mat-icon>create</mat-icon>
+      Изменить
+    </button>
+    <button mat-button (click)="delete()" *ngIf="allowDelete && false">
+      <mat-icon>delete_sweep</mat-icon>
+      Удалить
+    </button>
+    <span class="nav-spacer"></span>
+    <button mat-button (click)="fill()" *ngIf="allowFill">
+      <mat-icon>check_circle_outline</mat-icon>
+      Подтвердить
+    </button>
+    <button mat-button (click)="approve()" *ngIf="allowApprove">
+      <mat-icon>check_circle_outline</mat-icon>
+      Согласовать
+    </button>
+    <button mat-button (click)="openDialogWithTemplateRef(disDialog)" *ngIf="allowDisApprove">
+      <mat-icon>clear</mat-icon>
+      Отклонить
+    </button>
+    <button mat-button (click)="openTabel()" *ngIf="allowOpen">
+      <mat-icon>create</mat-icon>
+      Открыть для заполнения
+    </button>
+    <button mat-button (click)="openDialogWithTemplateRef(copyMonthDialog)" *ngIf="allowCopy">
+      <mat-icon>file_copy</mat-icon>
+      Копировать из предыдущих периодов
+    </button>
+  </mat-toolbar>
+  <!--
+   <ngx-datatable
+    #datatable
+    class="material table"
+    [rows]="items"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="70"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [externalSorting]="true"
+    [count]="total_records"
+    [offset]="page-1"
+    [limit]="size"
+    [loadingIndicator]="loading"
+    [sorts]="sortBy"
+    (page)='setPage($event)'
+    (sort)='onSort($event)'
+    [selectAllRowsOnPage]="true"
+    (activate)="onActivate($event)"
+    [selectionType]="'cell'"
+    (select)='onSelect($event)'
+    [selected]="selected"
+
+    [summaryRow]="true"
+    [summaryPosition]="'top'"
+    [summaryHeight]="'auto'"
+    >
+  </ngx-datatable>
+-->
+
+  <p-table #pTable [value]="items" [loading]="loading" [lazy]="true" (onLazyLoad)="onLazyLoad($event)"
+    [resizableColumns]="false" [scrollable]="true" [columns]="columns" [(selection)]="selected" dataKey="id">
+
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns" [style.width]="col.width" class="{{col.cellClass}}">
+      </colgroup>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" class="{{col.headerClass}}">{{col.name}}</th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" class="{{getHeaderClassByDay(col)}} {{col.headerClass}}">{{getSumByColumn(col)}}</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item>
+      <tr [pSelectableRow]="item">
+        <td *ngFor="let col of columns" class="{{getClassByDate(item, col)}} {{col.cellClass}}"
+          (click)="cellClick(item, col)">{{getPropValue(item,col.prop)}}</td>
+      </tr>
+    </ng-template>
+
+    <!-- <ng-template pTemplate="header"  let-columns>
+      <tr>
+          <td *ngFor="let col of columns" class="{{col.class}}">{{getSumByColumn(col)}}</td>
+      </tr>
+    </ng-template> -->
+  </p-table>
+
+</div>
+<br />
+<ng-template #disDialog>
+  <h5 mat-dialog-title>Причина отклонения</h5>
+  <mat-dialog-content>
+      <mat-form-field>
+        <textarea [(ngModel)]="disComment" matInput placeholder="Указать причину отклонения" required></textarea>
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Отмена</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="disComment">Отклонить</button>
+  </mat-dialog-actions>
+</ng-template>
+<ng-template #copyMonthDialog>
+  <h5 mat-dialog-title>Выберите месяц для копирования</h5>
+  <mat-dialog-content>
+      <mat-form-field>
+        <mat-select [(ngModel)]="beforeMonth" placeholder="Выберите месяц для копирования" required>
+          <mat-option *ngFor="let m of beforeMonths" value="{{m.date}}">{{m.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Отмена</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="beforeMonth">Выбрать</button>
+  </mat-dialog-actions>
+</ng-template>
+<ng-template #servicesInMonthDialog>
+  <h5 mat-dialog-title>Выберите строки для копирования</h5>
+  <mat-dialog-content class="sTable">
+    <table class="table table-striped">
+      <tr>
+        <th></th>
+        <th>Клиент</th>
+        <th>Проект</th>
+        <th>Результат оказанных услуг</th>
+      </tr>
+      <tr *ngFor="let item of beforeMonthServices">
+        <td><input type="checkbox" (change)="onRowChanged(item.id)"></td>
+        <td>{{item.client.title}}</td>
+        <td>{{item.project.title}}</td>
+        <td>{{item.result}}</td>
+      </tr>
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Отмена</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="" (click)="copyServices()">Выбрать</button>
+  </mat-dialog-actions>
+</ng-template>

@@ -1,0 +1,50 @@
+.users-tree-invisible {
+  display: none;
+}
+
+.mat-tree-node button{
+  height: 20px;
+  line-height: 20px;
+}
+
+.users-tree ul,
+.users-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  list-style-type: none;
+  position: relative;
+}
+
+.mat-tree-node{
+  max-height: 20px;
+  min-height: 20px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+mat-nested-tree-node[aria-expanded="false"] ul {
+  display: none;
+}
+
+.dsTree-WorkInfo{
+  position: absolute;
+  top: 0;
+  left: 40%;
+}
+
+.dsTree-TabelInfo{
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 16px !important;
+}
+.dsTree-TabelInfo span.material-icons{
+  font-size: 16px !important;
+}
+
+.treetable .t-no {color: red;}
+.treetable .t-yes {color: green;}
+
+
