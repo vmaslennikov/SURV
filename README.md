@@ -13,9 +13,11 @@ Angular 7 + sb-admin-material + @ng-bootstrap + @ngx-formly/material + PrimeNg +
 2. dotnet run
 
 В БД надо установить логин для своего пользователя (например, SqLiteStudio):
+
 Update Persons Set UserName = '[YourDomain\YourLogin]' where UserName = 'VM-001\root'
 
 Для сборки релизной версии:
+
 dotnet publish -c Release
 
 Примеры страниц:
